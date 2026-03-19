@@ -1,0 +1,18 @@
+SELECT 
+    p.FirstName, 
+    p.LastName, 
+    v.VisitDate, 
+    d.ICD10_Code, 
+    d.Attending_Doctor
+FROM 
+    Patient_Data p
+JOIN 
+    Visit_Log v ON p.HN = v.HN
+JOIN 
+    Diagnosis_Record d ON v.VN = d.VN
+WHERE 
+    d.ICD10_Code LIKE 'E11%' 
+    AND v.Clinic_Name = 'คลินิกอายุรกรรม'
+    AND v.VisitDate BETWEEN '2026-01-01' AND '2026-03-31'
+ORDER BY 
+    v.VisitDate DESC;
